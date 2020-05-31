@@ -8,8 +8,8 @@
     </header>
     <p>
       <button @click="counter.decrement">−</button>
-      <span class="counter">{{ counter.value }}</span>
-      <button @click="counter.increment(2)">+</button>
+      <span class="counter">{{ format.number(counter.value) }}</span>
+      <button @click="counter.increment">+</button>
       <button @click="counter.reset">Reset</button>
     </p>
     <a
@@ -47,6 +47,12 @@
     return counter;
   };
   
+  const format = {
+    number(value) {
+      return new Intl.NumberFormat().format(value);
+    },
+  };
+  
   export default {
     setup() {
       const counter = useCounter(0);
@@ -56,11 +62,10 @@
       return {
         message: "Learn Vue",
         counter,
+        format,
       };
-    }
+    },
   };
-  
-  
 </script>
 
 <style lang="scss" scoped>
