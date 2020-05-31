@@ -1,66 +1,31 @@
 <template>
-  <div class="App">
-    <header class="App-header">
-      <img src="/logo.svg" class="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.vue</code> and save to reload.
-      </p>
-    </header>
+  <header class="App-header">
+    <img src="/logo.svg" class="App-logo" alt="logo" />
     <p>
-      <button @click="counter.decrement">−</button>
-      <span class="counter">{{ format.number(counter.value) }}</span>
-      <button @click="counter.increment">+</button>
-      <button @click="counter.reset">Reset</button>
+      Edit <code>src/App.vue</code> and save to reload.
     </p>
-    <a
-      class="App-link"
-      href="https://vuejs.org"
-      target="_blank"
-      rel="noopener noreferrer"
-    >{{ message }}</a>
-  </div>
+  </header>
+  <p>
+    <button @click="counter.decrement">−</button>
+    <span class="counter">{{ format.number(counter.value) }}</span>
+    <button @click="counter.increment">+</button>
+    <button @click="counter.reset">Reset</button>
+    <button @click="counter.value += 100">Jump 100</button>
+  </p>
 </template>
  
 <script>
-  import { ref, reactive } from "vue";
-  
-  function useCounter(initialValue) {
-    const counter = reactive({
-      value: initialValue,
-      increment,
-      decrement,
-      reset,
-    });
-    
-    function increment() {
-      counter.value += 1;
-    }
-    
-    function decrement() {
-      counter.value -= 1;
-    }
-    
-    function reset() {
-      counter.value = 0;
-    }
-    
-    return counter;
-  };
-  
-  const format = {
-    number(value) {
-      return new Intl.NumberFormat().format(value);
-    },
-  };
+  import format from "./format.js";
+  import useCounter from "./use/counter.js";
   
   export default {
     setup() {
       const counter = useCounter(0);
+      console.log(counter);
       
       setInterval(counter.increment, 1000);
       
       return {
-        message: "Learn Vue",
         counter,
         format,
       };
@@ -69,7 +34,6 @@
 </script>
 
 <style lang="scss" scoped>
-  $link-color: #00c185;
   $grid-unit: 8px;
   
   .App-header {
@@ -81,10 +45,6 @@
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-  }
-  
-  .App-link {
-    color: $link-color;
   }
   
   .App-logo {

@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "start": "snowpack dev",
-    "build": "snowpack build"
+    "dev": "snowpack dev",
+    "build": "snowpack build",
+    "start": "http-server ./build/"
   },
   "devDependencies": {
     "@snowpack/app-scripts-vue": "^1.0.0",
@@ -9,6 +10,7 @@
     "vue": "^3.0.0-0"
   },
   "dependencies": {
+    "http-server": "^0.12.3",
     "sass": "^1.26.7"
   }
 }
