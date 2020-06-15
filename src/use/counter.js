@@ -17,7 +17,6 @@ function useCounter(initialValue) {
   }
   
   function reset() {
-    console.log("reset");
     counter.value = 0;
   }
   
